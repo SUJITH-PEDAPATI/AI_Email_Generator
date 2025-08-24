@@ -90,7 +90,7 @@ if all(key in st.session_state for key in ['subject', 'tone', 'key_points', 'rec
     key_points = st.session_state['key_points']
     sender_name = st.session_state['sender_name']
     recipient_name = st.session_state['recipient_name']
-    st.markdown("### Here are the details you provided:")
+    # st.markdown("### Here are the details you provided:")
     st.markdown(f"- **Email Subject:** {subject}")
     st.markdown(f"- **Tone:** {tone}")
     st.markdown(f"- **Key Points:** {key_points}")
@@ -213,4 +213,5 @@ if check_box:
                 st.success("✅ Email sent successfully!")
             except Exception as e:
                 st.error(f"⚠️ Failed to send email: {e}")
+
 
