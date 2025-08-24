@@ -1,7 +1,8 @@
 import streamlit as st
 import requests
 import json
-import PyPDF2
+import pypdf
+from pypdf import PdfReader
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -109,7 +110,8 @@ if all(key in st.session_state for key in ['subject', 'tone', 'key_points', 'rec
             try:
                 st.spinner("Reading and extracting text from the PDF...")
                 st.success("PDF file uploaded successfully!")
-                pdf_render = PyPDF2.PdfReader(attach_file)
+                pdf_render = PdfReader(attach_file)
+                pdf_text = ""
                 for page in pdf_render.pages:
                     pdf_text += page.extract_text() or ""
             except Exception as e:
@@ -211,3 +213,4 @@ if check_box:
                 st.success("✅ Email sent successfully!")
             except Exception as e:
                 st.error(f"⚠️ Failed to send email: {e}")
+
